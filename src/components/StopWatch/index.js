@@ -17,14 +17,10 @@ class StopWatch extends Component {
       return { time: newTime }
     })
   }
-  timer = () => {
-    this.tick();
-    this.timeoutId = setTimeout(this.timer, 1000);
-  }
 
   start = () => {
     if (this.timeoutId === null) {
-      setTimeout(this.timer, 1000);
+      this.tick();
     }
   }
 
@@ -43,6 +39,7 @@ class StopWatch extends Component {
   }
 
   componentDidUpdate() {
+    this.timeoutId = setTimeout(this.tick, 1000);
   }
 
   componentWillUnmount() {
